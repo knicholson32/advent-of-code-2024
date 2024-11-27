@@ -1,0 +1,14 @@
+{
+  "name": "2022",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "bun-style": "^0.3.2"
+  }
+}
