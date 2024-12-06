@@ -1,3 +1,11 @@
+export const reverse = (s: string): string => s.split("").reverse().join("");
+
+export const isSame = (a: any[], b: any[]): boolean => {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+
 export const initialFile = (year: number, day: number) => {
 
 return `import * as helpers from '@helpers';
@@ -5,8 +13,8 @@ return `import * as helpers from '@helpers';
  * Advent of Code ${year}_${day}, Part 1
  * @author Keenan Nicholson
  */ 
-export const part1 = async (): string | number => {
-  const input = (await (await helpers.loadInput(import.meta.dir)).text()).split('\n').filter((v) => v.length > 0);
+export const part1 = async (): Promise<string | number> => {
+  const input = (await (await helpers.loadInput(import.meta.dir)).text()).split('\\n').filter((v) => v.length > 0);
   return '';
 }
 
@@ -14,8 +22,8 @@ export const part1 = async (): string | number => {
 //  * Advent of Code ${year}_${day}, Part 2
 //  * @author Keenan Nicholson
 //  */ 
-// export const part2 = async (): string | number => {
-//   const input = (await (await helpers.loadInput(import.meta.dir)).text()).split('\n').filter((v) => v.length > 0);
+// export const part2 = async (): Promise<string | number> => {
+//   const input = (await (await helpers.loadInput(import.meta.dir)).text()).split('\\n').filter((v) => v.length > 0);
 //   return '';
 // }
 `;
