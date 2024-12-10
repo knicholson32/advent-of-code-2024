@@ -46,12 +46,19 @@ for (const d of days) {
     await runDay(d)
     break;
   } catch (e) {
-    console.log(style('Creating initial files', ['italic', 'bold', 'yellow']));
-    const path = (import.meta.dir).split('/');
-    const year = parseInt(path[path.length - 1]);
-    await Bun.write(import.meta.dir + '/days/' + d + '/index.ts', initialFile(year, d));
-    console.write(style('Please restart bun: ', ['bold', 'green']));
-    console.log(style('bun --watch ./', ['gray']));
-    process.exit(0);
+    const err = e as Error;
+    if (err.name === 'ResolveMessage') {
+      console.log(style('Creating initial files', ['italic', 'bold', 'yellow']));
+      const path = (import.meta.dir).split('/');
+      const year = parseInt(path[path.length - 1]);
+      await Bun.write(import.meta.dir + '/days/' + d + '/index.ts', initialFile(year, d));
+      console.write(style('Please restart bun: ', ['bold', 'green']));
+      console.log(style('bun --watch ./', ['gray']));
+      process.exit(0);
+    } else {
+      console.clear();
+      console.error(err);
+      break;
+    }
   }
 }
